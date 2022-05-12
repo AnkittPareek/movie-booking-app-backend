@@ -1,15 +1,16 @@
 module.exports = (mongoose) => {
     const User = mongoose.model(
-      "User",
-      mongoose.Schema({
-        userid: Number,
-        email: {
-          type: String,
-          unique: true,
-          required: true,
-          lowercase: true,
-          validate: (value) => {
-            return validator.isEmail(value);
+        "user",
+        mongoose.Schema(
+          {
+            userid: Number,
+            email: {
+              type: String,
+              unique: true,
+              required: true,
+              lowercase: true,
+              validate: (value) => {
+                return validator.isEmail(value);
           },
         },
         first_name: { type: String, required: true },
@@ -39,7 +40,9 @@ module.exports = (mongoose) => {
             ],
           },
         ],
-      })
+    },
+      { timestamps: true }
+    )
     );
     return User;
   };
